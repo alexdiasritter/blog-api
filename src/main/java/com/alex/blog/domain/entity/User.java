@@ -1,7 +1,6 @@
 package com.alex.blog.domain.entity;
 import jakarta.persistence.*;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Table(name = "tb_users")
@@ -10,7 +9,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private UUID userId;
+    private Long user_id;
 
     private String name;
 
@@ -19,23 +18,23 @@ public class User {
 
     private String password;
 
-    @OneToMany(mappedBy = "")
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Post> posts;
 
     @ManyToMany
-    @JoinTable(name = "",
-            joinColumns = @JoinColumn(name = ""),
-            inverseJoinColumns = @JoinColumn(name = ""))
+    @JoinTable(name = "tb_post_likes",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "post_id"))
     private List<Post> likes;
 
-    @OneToMany(mappedBy = "")
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Comment> comments;
 
     public User() {
     }
 
-    public User(UUID userId, String name, String email, String password, List<Post> posts, List<Post> likes, List<Comment> comments) {
-        this.userId = userId;
+    public User(Long id, String name, String email, String password, List<Post> posts, List<Post> likes, List<Comment> comments) {
+        this.user_id = id;
         this.name = name;
         this.email = email;
         this.password = password;
@@ -44,8 +43,12 @@ public class User {
         this.comments = comments;
     }
 
-    public UUID getUserId() {
-        return userId;
+    public Long getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
     }
 
     public String getName() {
