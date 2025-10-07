@@ -2,7 +2,6 @@ package com.alex.blog.domain.entity;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Table(name = "tb_posts")
@@ -10,7 +9,8 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID postId;
+    @Column(name = "post_id")
+    private Long post_id;
 
     private LocalDateTime postDateTime;
 
@@ -21,19 +21,22 @@ public class Post {
 
     private String urlImageS3;
 
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User author;
 
-    @OneToMany(mappedBy = "")
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Comment> commentsList;
 
-    @OneToMany(mappedBy = "")
+    @OneToMany(mappedBy = "likes")
     private List<User> likes;
 
     public Post() {
     }
 
-    public Post(UUID postId, LocalDateTime postDateTime, String title, String text, String urlImageS3, User author, List<Comment> commentsList) {
-        this.postId = postId;
+    public Post(Long post_id, LocalDateTime postDateTime, String title, String text, String urlImageS3, User author, List<Comment> commentsList) {
+        this.post_id = post_id;
         this.postDateTime = postDateTime;
         this.title = title;
         this.text = text;
@@ -42,12 +45,12 @@ public class Post {
         this.commentsList = commentsList;
     }
 
-    public UUID getPostId() {
-        return postId;
+    public Long getPost_id() {
+        return post_id;
     }
 
-    public void setPostId(UUID postId) {
-        this.postId = postId;
+    public void setPost_id(Long post_id) {
+        this.post_id = post_id;
     }
 
     public LocalDateTime getPostDateTime() {
