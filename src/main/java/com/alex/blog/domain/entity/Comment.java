@@ -9,36 +9,38 @@ public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID commentId;
+    @Column(name = "comment_id")
+    private Long comment_id;
 
     private String text;
     private LocalDateTime commentDateTime;
 
-    @ManyToOne
-    @JoinColumn(name = "")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User author;
 
-    @ManyToOne
-    @JoinColumn(name = "")
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "post_id")
     private Post post;
 
     public Comment() {
     }
 
-    public Comment(UUID commentId, String text, LocalDateTime commentDateTime, User author, Post post) {
-        this.commentId = commentId;
+    public Comment(Long comment_id, String text, LocalDateTime commentDateTime, User author, Post post) {
+        this.comment_id = comment_id;
         this.text = text;
         this.commentDateTime = commentDateTime;
         this.author = author;
         this.post = post;
     }
 
-    public UUID getCommentId() {
-        return commentId;
+    public Long getComment_id() {
+        return comment_id;
     }
 
-    public void setCommentId(UUID commentId) {
-        this.commentId = commentId;
+    public void setComment_id(Long comment_id) {
+        this.comment_id = comment_id;
     }
 
     public String getText() {
