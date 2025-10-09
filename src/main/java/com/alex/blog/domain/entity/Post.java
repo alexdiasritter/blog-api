@@ -32,72 +32,56 @@ public class Post {
     @OneToMany(mappedBy = "likes")
     private List<User> likes;
 
-    public Post() {
-    }
-
-    public Post(Long post_id, LocalDateTime postDateTime, String title, String text, String urlImageS3, User author, List<Comment> commentsList) {
-        this.post_id = post_id;
-        this.postDateTime = postDateTime;
-        this.title = title;
-        this.text = text;
-        this.urlImageS3 = urlImageS3;
-        this.author = author;
-        this.commentsList = commentsList;
-    }
+    private String photo_url;
 
     public Long getPost_id() {
         return post_id;
     }
-
     public void setPost_id(Long post_id) {
         this.post_id = post_id;
     }
-
     public LocalDateTime getPostDateTime() {
         return postDateTime;
     }
-
     public void setPostDateTime(LocalDateTime postDateTime) {
         this.postDateTime = postDateTime;
     }
-
     public String getTitle() {
         return title;
     }
-
     public void setTitle(String title) {
         this.title = title;
     }
-
     public String getText() {
         return text;
     }
-
     public void setText(String text) {
         this.text = text;
     }
-
     public String getUrlImageS3() {
         return urlImageS3;
     }
-
     public void setUrlImageS3(String urlImageS3) {
         this.urlImageS3 = urlImageS3;
     }
-
     public User getAuthor() {
         return author;
     }
-
     public void setAuthor(User author) {
         this.author = author;
     }
-
     public List<Comment> getCommentsList() {
         return commentsList;
     }
-
     public void setCommentsList(List<Comment> commentsList) {
         this.commentsList = commentsList;
     }
+    public String getPhoto_url() {
+        return photo_url;
+    }
+    public void setPhoto_url(String photo_url) {
+        this.photo_url = photo_url;
+    }
+
+
 }
