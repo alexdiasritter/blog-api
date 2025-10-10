@@ -18,6 +18,8 @@ public class User {
 
     private String password;
 
+    private String photo_url;
+
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Post> posts;
 
@@ -30,72 +32,52 @@ public class User {
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Comment> comments;
 
-    public User() {
-    }
-
-    public User(Long id, String name, String email, String password, List<Post> posts, List<Post> likes, List<Comment> comments) {
-        this.user_id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.posts = posts;
-        this.likes = likes;
-        this.comments = comments;
-    }
-
     public Long getUser_id() {
         return user_id;
     }
-
     public void setUser_id(Long user_id) {
         this.user_id = user_id;
     }
-
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
-
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
-
     public List<Post> getPosts() {
         return posts;
     }
-
     public void setPosts(List<Post> posts) {
         this.posts = posts;
     }
-
     public List<Post> getLikes() {
         return likes;
     }
-
     public void setLikes(List<Post> likes) {
         this.likes = likes;
     }
-
     public List<Comment> getComments() {
         return comments;
     }
-
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+    public String getPhoto_url() {
+        return photo_url;
+    }
+    public void setPhoto_url(String photo_url) {
+        this.photo_url = photo_url;
     }
 }
