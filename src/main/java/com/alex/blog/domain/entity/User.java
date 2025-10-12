@@ -16,8 +16,10 @@ public class User {
     @Column(unique = true)
     private String email;
 
-    private String password;
+    @Column(name = "email_verified")
+    private boolean emailVerified;
 
+    @Column(name = "photo_url")
     private String photo_url;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
@@ -49,12 +51,6 @@ public class User {
     }
     public void setEmail(String email) {
         this.email = email;
-    }
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
     }
     public List<Post> getPosts() {
         return posts;

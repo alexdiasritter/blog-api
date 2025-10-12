@@ -12,28 +12,17 @@ public class Comment {
     @Column(name = "comment_id")
     private Long comment_id;
 
-    private String text;
+    private String content;
+
     private LocalDateTime commentDateTime;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User author;
 
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
     private Post post;
-
-    public Comment() {
-    }
-
-    public Comment(Long comment_id, String text, LocalDateTime commentDateTime, User author, Post post) {
-        this.comment_id = comment_id;
-        this.text = text;
-        this.commentDateTime = commentDateTime;
-        this.author = author;
-        this.post = post;
-    }
 
     public Long getComment_id() {
         return comment_id;
@@ -44,11 +33,11 @@ public class Comment {
     }
 
     public String getText() {
-        return text;
+        return content;
     }
 
     public void setText(String text) {
-        this.text = text;
+        this.content = text;
     }
 
     public LocalDateTime getCommentDateTime() {
