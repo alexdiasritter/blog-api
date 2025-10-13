@@ -21,7 +21,7 @@ public class SecurityConfig {
                         .requestMatchers("/actuator/**", "/error").permitAll()
                         .requestMatchers("/api/public/**").permitAll()
                         .requestMatchers("/api/posts").permitAll()
-                        .requestMatchers("/api/posts").hasAuthority("SCOPE_blog:write")
+                        .requestMatchers("/api/posts").hasAuthority("SCOPE_blog:read")
                         .requestMatchers("/api/posts/**").hasAuthority("SCOPE_blog:write")
                         .requestMatchers("/api/admin/**").hasAuthority("SCOPE_blog:admin")
                         .anyRequest().authenticated()
