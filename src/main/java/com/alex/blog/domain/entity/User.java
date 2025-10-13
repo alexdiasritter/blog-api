@@ -13,6 +13,9 @@ public class User {
 
     private String name;
 
+    @Column(unique = true, name = "auth0_sub")
+    private String auth0Sub;
+
     @Column(unique = true)
     private String email;
 
@@ -75,5 +78,11 @@ public class User {
     }
     public void setPhoto_url(String photo_url) {
         this.photo_url = photo_url;
+    }
+    public String getAuth0Sub() {
+        return auth0Sub;
+    }
+    public void setAuth0Sub(String auth0Sub) {
+        this.auth0Sub = auth0Sub;
     }
 }
