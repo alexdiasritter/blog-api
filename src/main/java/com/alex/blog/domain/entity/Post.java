@@ -1,4 +1,5 @@
 package com.alex.blog.domain.entity;
+import com.alex.blog.domain.dto.PostDtoRequest;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,7 +22,6 @@ public class Post {
 
     private String urlImageS3;
 
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User author;
@@ -33,6 +33,14 @@ public class Post {
     private List<User> likes;
 
     private String photo_url;
+
+    public Post(PostDtoRequest dto) {
+        this.postDateTime = dto.postDateTime();
+        this.title = dto.title();
+        this.text = dto.text();
+        this.urlImageS3 = dto.urlImageS3();
+        this.photo_url = dto.photo_url();
+    }
 
     public Long getPost_id() {
         return post_id;
@@ -82,6 +90,4 @@ public class Post {
     public void setPhoto_url(String photo_url) {
         this.photo_url = photo_url;
     }
-
-
 }
